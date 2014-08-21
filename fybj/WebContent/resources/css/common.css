@@ -1,0 +1,124 @@
+body{font-size: 12px;background-color: #fff;}
+a{cursor: pointer;color: blue;}
+a:link {color: blue; text-decoration:none;}
+a:active:{color: red; }
+a:visited {color:orange;text-decoration:none;} 
+a:hover {color: red; text-decoration:underline;}
+/* 头部  */
+#head{height: 73px; font-size: 13px; color: white;background: url("../images/main/top_bg.gif");}
+#right{height: 100%;float: right;padding:0px;}
+#right a:link,#right a:visited {color: #dfe8f6;text-decoration: none;}
+#right a:hover {color: #000;text-decoration: none;}
+#left{height:100%; float: left;width:462px;}
+.formMargin{margin-top:8px;}
+.formMargin-1{margin-top:5px;}
+
+/* 进度条 */
+#loading-mask {position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 9200000;background-color: #FFFFFF;}
+#loading {position: absolute;left: 45%;top: 40%;padding: 2px;z-index: 9200001;height: auto;}
+#loading img {margin-botton: 5px;}
+#loading .loading-indicator {background: white;color: #555;font-size: 13px;padding: 10px;margin: 0px;text-align: center;height: auto}
+
+/*图片查看*/
+.thumb img{height:60px;width:100px;border:3px solid #dddddd;}
+.thumb-wrap{float: left; margin: 6px; margin-right: 0;}
+.thumb-wrap a{cursor:pointer;text-decoration:none;color:#2244bb}
+.thumb-wrap p{display: block;overflow: hidden;text-align: center;}
+
+/* 图标 */
+.icon-expand-all {background-image: url(../images/icons/expand-all.gif) !important;}
+.icon-collapse-all {background-image: url(../images/icons/collapse-all.gif) !important;}
+.saveBtn{background-image: url("../images/icons/accept.png") !important;}
+.resetBtn{background-image: url("../images/icons/reset.png") !important;}
+.cancelBtn{background-image: url("../images/icons/delete.png") !important;}
+.grid{background-image: url("../images/icons/page.png") !important;}
+.reset{background-image:url(../images/icons/broom.gif)!important;}
+.delete{background:url("../images/icons/delete.gif") no-repeat!important;}
+.batchdelete{background:url("../images/icons/page_white_delete.png") no-repeat!important;}
+.update{background-image: url("../images/icons/page_white_edit.png") !important;}
+.refresh{background-image: url("../images/icons/refresh.png") !important;}
+.sure{background-image:url("../images/icons/sure.gif")!important;}
+.add{background-image:url("../images/icons/add.gif")!important;}
+.query{background-image:url(../images/icons/query.gif)!important;}
+.back{background-image:url(../images/icons/back.png)!important;}
+.save{background-image:url("../images/icons/save.png")!important;}
+.sysMgr{background-image: url("../images/icons/application_key.png") !important;}
+.childMgr{background-image: url("../images/icons/group.png") !important;}
+.schoolMgr{background-image: url("../images/icons/building.png") !important;}
+.otherMgr{background-image: url("../images/icons/application.png") !important;}
+.dayMgr{background-image: url("../images/icons/date.png") !important;}
+.dataMgr{background-image: url("../images/icons/database.png") !important;}
+.nutMgr{background-image: url("../images/icons/bricks.png") !important;}
+.hospitaltab{background-image: url("../images/icons/building.png") !important;}
+.housetab{background-image: url("../images/icons/house.png") !important;}
+.book{background-image: url("../images/icons/book.png") !important;}
+.sysoper{background-image: url("../images/icons/lorry_go.png") !important;}
+.zzjg{background-image: url("../images/icons/chart_organisation.png") !important;}
+.user{background-image: url("../images/icons/group.png") !important;}
+.userSuit{background-image: url("../images/icons/user_suit.png") !important;}
+.role{background-image: url("../images/icons/key.png") !important;}
+.right{background-image: url("../images/icons/lock.png") !important;}
+.newtab{background-image: url("../images/icons/new_tab.gif") !important;}
+.clazz{background-image: url("../images/icons/door.png") !important;}
+.info{background-image: url("../images/icons/page_white_text.png") !important;}
+.photo{background-image: url("../images/icons/photo.png") !important;}
+.photo_add{background-image: url("../images/icons/photo_add.png") !important;}
+.instu{background-image: url("../images/icons/group_add.png") !important;}
+.outstu{background-image: url("../images/icons/group_delete.png") !important;}
+.outgo{background-image: url("../images/icons/group_go.png") !important;}
+.up{background-image: url("../images/icons/arrow_up.png") !important;}
+.pexam{background-image: url("../images/icons/vcard.png") !important;}
+.table{background-image: url("../images/icons/report.png") !important;}
+.upBtn{background-image: url("../images/icons/arrow_up.png") !important;}
+.downBtn{background-image: url("../images/icons/arrow_down.png") !important;}
+.iconBlue{background-image: url("../images/icons/tb_blue.png") !important;}
+.iconRed{background-image: url("../images/icons/tb_red.png") !important;}
+.iconBl{background-image: url("../images/icons/bl.png") !important;}
+.printBtn{background-image: url("../images/icons/printer.png") !important;}
+.out{background-image: url("../images/icons/out.png") !important;}
+
+table.tb{border-top:1px dotted #bababa;border-left: 1px dotted #bababa; }
+table.tb td,table.tb th{height: 24px;padding-left: 5px;line-height: 24px;color:#333;}
+table.tb td.lb,table.tb th.lb{border-right: 1px dotted #bababa;border-bottom: 1px dotted #bababa;}
+
+.ckInfo span{font-weight: bold;color: blue;}
+.childInfo{color: blue;padding-bottom: 8px;padding-top: 5px;}
+
+.tit{color:#154288;font-weight:normal;}
+
+/* 出勤详情 */
+.adc{border-top: 1px solid orange;border-left: 1px solid orange;}
+.adc td{border-bottom: 1px solid orange;border-right: 1px solid orange;}
+.adc tr.cont{height: 30px;}
+.adc tr.titt{height: 25px;background-color: #d9e8f7;}
+.adc td.szcon{cursor: pointer;}
+.adc td.on{background-color: lime;}
+
+#nutrientsBtns{clear: both;}
+#nutrientsBtns ul{list-style: none;}
+#nutrientsBtns ul li{margin-left: 15px;margin-right: 15px;margin-top: 10px;float: left;}
+.nutBtn{width: 80px;height: 25px;line-height:25px;background: url("../images/main/btn.png");border: 0px;cursor: pointer;text-align: center;}
+.nutBtnHover{background: url("../images/main/btn_.png");border: 0px;}
+.nutBtnAct{background: url("../images/main/btn_.png");border: 0px;}
+
+.anslyse{clear: both;}
+.anslyse ul{list-style: none;}
+.anslyse ul li{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom:3px; float: left;background: url("../images/main/pn.png") no-repeat; height: 70px;width:100px; display: block;}
+.nut-title{width: 100px;margin: 0 auto;text-align: center;font-size: 14px;font-weight: bold;color: red;margin-top:20px;}
+.nut-con{width: 100px;margin: 0 auto;text-align: center;font-size: 12px;color: #333;margin-top:10px; }
+
+.syrq{clear: both;}
+.syrq p{margin: 10px;color:red;font-weight: bold;}
+.syrq ul{list-style: none;}
+.syrq ul li{margin: 5px;}
+
+.assess-report{clear: both;list-style: none;width: 595px;margin: 0 auto;}
+.assess-report li{margin: 10px;}
+.assess-report li div.icon{border-bottom: 2px solid green;background: url("../images/icons/weather_sun.png") no-repeat;}
+.assess-report li div.icon span{margin-left: 18px;font-weight: bold;color: blue;}
+
+.assess-food{list-style: square;}
+.assess-food li{float: left;width: 180px;height: 10px;line-height: 10px;}
+
+.sp{clear: both;height: auto;}
+.sp a{text-decoration: none;line-height: 16px;height:16px;font-size: 11px;}

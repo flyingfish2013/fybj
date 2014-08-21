@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<context:annotation-config/>
+	
+	<context:component-scan base-package="code.main.bean"/>
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="initialSize" value="${jdbc.initialSize}"/>
+		<property name="maxActive" value="${jdbc.maxActive}"/>
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+	</bean>
+	-->
+	<!-- 
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+			destroy-method="close">
+			<property name="driverClass" value="${jdbc.driverClassName}"/>
+			<property name="jdbcUrl" value="${jdbc.url}" />
+			<property name="user" value="${jdbc.username}"/>
+			<property name="password" value="${jdbc.password}"/>
+			<property name="minPoolSize" value="${jdbc.minPoolSize}"/>
+			<property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+			<property name="initialPoolSize" value="${jdbc.initialSize}"/>
+			<property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
+			<property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
+			<property name="maxStatements" value="${jdbc.maxStatements}"/>
+			<property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"/>
+			<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"/>
+			<property name="breakAfterAcquireFailure" value="${jdbc.breakAfterAcquireFailure}"/>
+			<property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"/>
+		</bean>
+	-->
+	
+	<!-- datasource star -->
+	<!-- use boneCP datasource pool and use lazyDatasource -->
+	<bean id="mainDataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 检查数据库连接池中空闲链接的间隔时间，单位是分钟，默认是240分，如果取消则设置为0 -->
+		<property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}" />
+		<!-- connect 空闲存活时间,默认60分钟 -->
+		<property name="idleMaxAge" value="${idleMaxAge}" />
+		<!-- 每个分区最大的链接数 -->
+		<property name="maxConnectionsPerPartition" value="${maxConnectionsPerPartition}" />
+		<property name="minConnectionsPerPartition" value="${minConnectionsPerPartition}" />
+		<!-- 分区数，默认2， 最小1， 推荐3-4 -->
+		<property name="partitionCount" value="${partitionCount}" />
+		<!-- 每次去拿数据库链接的时候一次性拿几个，默认2 -->
+		<property name="acquireIncrement" value="${acquireIncrement}" />
+		<!-- 缓存prepared statements的大小,默认0 -->
+		<property name="statementsCacheSize" value="${statementsCacheSize}" />
+		<!-- 每个分区释放链接助理进程的数据，默认3，除非你的一个数据库链接的时间内做了很多工作,不然过多的助理进程会影响你的性能 -->
+		<property name="releaseHelperThreads" value="${releaseHelperThreads}" />
+	</bean>
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+		<property name="targetDataSource">
+			<ref local="mainDataSource"/>
+		</property>
+	</bean>
+	<!-- end -->
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="namingStrategy">
+			<bean class="org.hibernate.cfg.ImprovedNamingStrategy"/>
+		</property>
+		<property name="packagesToScan" value="code.main.bean.*" />
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=${hibernate.dialect}
+				hibernate.hbm2ddl.auto=${hibernate.hbm2ddl.auto}
+				hibernate.show_sql=${hibernate.show_sql}
+				hibernate.format_sql=${hibernate.format_sql} 
+				hibernate.cache.use_query_cache=${hibernate.cache.use_second_level_cache}
+				hibernate.cache.use_second_level_cache=${hibernate.cache.use_second_level_cache}
+				hibernate.cache.provider_class=${hibernate.cache.provider_class}
+				hibernate.cache.provider_configuration_file_resource_path=${hibernate.cache.provider_configuration_file_resource_path}
+			</value>
+		</property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+</beans>
